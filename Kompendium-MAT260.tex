@@ -1,0 +1,123 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[unicode]{hyperref}
+
+% Enumeration
+\usepackage{enumerate}
+\usepackage{enumitem} 
+\usepackage[sharp]{easylist}
+\usepackage{multicol}
+
+%For equation reference
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{commath}
+
+%More maths stuff
+\usepackage{amsfonts}
+
+% Change the margins
+\usepackage{geometry}
+\geometry{a4paper, top=2cm, left=3cm, right=3cm, bottom=2cm, includehead, includefoot}
+%opening
+\title{Compendium MAT260}
+\author{Anita Gjesteland}
+
+\begin{document}
+
+\maketitle
+
+
+
+
+\section{Preliminaries}
+\subsection{Norms}
+
+\newtheorem{mydef}{Definition}
+\newtheorem{myex}{Example}
+\newtheorem{mythm}{Theorem}
+\begin{mydef}
+	Let V be a linear spave over $\mathbb{R}$. A function $\norm{\cdot}: V \rightarrow$ $\mathbb{R}$ is a norm on V if it satisfies the following:\\
+	\begin{enumerate}[label=(\roman*)]
+		\item $\norm{\lambda x} = \abs{\lambda}\norm{x}$ \: $ \forall x \in \mathbb{R} $
+		\item $\normalcolor{x + y} \leq \norm{x} + \norm{y}$ \:$ \forall x,y \in V$
+		\item $\norm{x} = 0 \Leftrightarrow x = 0$
+	\end{enumerate}
+\end{mydef}
+
+\begin{myex} 
+	p - norm: $\norm{x}_p = (\sum_{i = 1}^{n}\abs{x_i}^p)^{1/p}$
+	\begin{enumerate}
+		\item[p = 2:] $\norm{x}_2 = (\sum_{i = 1}^{n}\abs{x_i}^2)^{1/2} $
+		\item [p = $\infty$:] $\norm{x}_\infty = \underset{i \in \{1,...,n\}}{\max \abs{x_i}}$
+	\end{enumerate}
+\end{myex}
+
+\subsubsection{Matrix norms}
+
+A matrix norm has the following properties:
+\begin{enumerate}[label=(\roman*)]
+	\item $\norm{\lambda A} = \abs{\lambda}\norm{A} $\: $\forall \lambda \in \mathbb{R},$ \:$ \forall A \in \mathbb{R^{n,n}}$
+	\item $\norm{A + B} \leq \norm{A} + \norm{B}$ \: $\forall A,B \in \mathbb{R^{n,n}}$
+	\item $\norm{A} = 0 \rightarrow A = 0_n$
+	\item $\norm{AB} \leq \norm{A}\norm{B}$ \: $\forall A,B \in \mathbb{R^{n,n}}$
+\end{enumerate}
+
+\begin{myex}
+	\begin{enumerate}
+		\item $\norm{A}_1 = \underset{x \neq 0}{\sup} \frac{\norm{Ax}_1}{\norm{x}_1} = \underset{j=1,...,n}{\max} \sum_{i=1}^{n}\abs{a_{ij}}$. Max column sum
+		\item $\norm{A}_\infty = \underset{x \neq 0}{\sup} \frac{\norm{Ax}_\infty}{\norm{x}_\infty} = \underset{i = 1,...,n}{\max} \sum_{j=1}^{n} \abs{a_{ij}}$. Max row sum
+		\item $\norm{A}_2 = \underset{x \neq 0}{\sup} \frac{\norm{Ax}_2}{\norm{x}_2}$. Also: $\sqrt{\rho(A^TA)}$, $\rho$ is the spectrum of A. Euclidean norm
+		\item $\norm{A}_F = (\sum_{i}^{n}\sum_{j}^{n}\abs{a_{ij}}^2)^{1/2}$. Frobenius norm
+	\end{enumerate}
+\end{myex}
+
+\subsubsection{Function norm}
+
+Function norms we have used in this course are among others: \\
+\begin{enumerate}
+	\item $\norm{f}_p = (\int_{a}^{b} \abs{f(x)}^2\omega (x) dx)^{1/p}$ where $\omega(x)$ is some weight function.
+	\item $\norm{f}_\infty = \underset{a \leq x \leq b}{\max} \abs{f(x)}$
+\end{enumerate}
+
+\subsection{Banach stuff}
+\begin{mydef}[Banach space]
+	A Banach space is a normed space that is complete. I.e every Cauchy sequence is convergent (to an element of the space).
+\end{mydef}
+
+\begin{mythm}
+	Let $(X,\norm{\cdot})$ be a Banach space and let $U \subseteq X $ be a subset of X and $f: U \rightarrow X$ be a function. If 
+	\begin{enumerate}[label = (\roman*)]
+		\item U is closed
+		\item f is a contraction
+		\item $f(U) \subseteq U$
+	\end{enumerate}
+	then f has a unique fixed point $x^* \in U$, i.e $x^* = f(x^*)$. Moreover, the sequence $x_n = f(x_{n-1})$, with $ x_0 \in U$arbitrary, converges to $x^*$. 
+\end{mythm}
+
+\subsection{Inner product}
+
+\begin{mydef}
+	Let V be a vector space. $\langle\cdot,\cdot\rangle: V \times V \rightarrow \mathbb{R}(\mathbb{C})$ is called an inner product on V over $\mathbb{R}(\mathbb{C})$ if:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\langle x, x \rangle \geq 0 $\:$\forall x \in \mathbb{R}(\mathbb{C})$
+		\item $\langle x, x \rangle = 0 \Rightarrow x=0$
+		\item $\langle \alpha x + \beta y, z \rangle = \alpha \langle x, z \rangle + \beta \langle y,z \rangle$ \: $\forall \alpha \beta \in \mathbb{R}(\mathbb{C})$, \: $\forall x,y,z \in V $
+		\item $\langle x,y\rangle = \overline{\langle y,x \rangle}$
+	\end{enumerate}
+\end{mydef}
+
+
+
+
+
+
+
+
+\end{document}
