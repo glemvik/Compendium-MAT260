@@ -109,9 +109,51 @@ Function norms we have used in this course are among others: \\
 		\item $\langle x, x \rangle \geq 0 $\:$\forall x \in \mathbb{R}(\mathbb{C})$
 		\item $\langle x, x \rangle = 0 \Rightarrow x=0$
 		\item $\langle \alpha x + \beta y, z \rangle = \alpha \langle x, z \rangle + \beta \langle y,z \rangle$ \: $\forall \alpha \beta \in \mathbb{R}(\mathbb{C})$, \: $\forall x,y,z \in V $
-		\item $\langle x,y\rangle = \overline{\langle y,x \rangle}$
+		\item $\langle x,y\rangle = \overline{\langle y,x \rangle}$ \:$\forall x,y \in V$
 	\end{enumerate}
 \end{mydef}
+
+\begin{myex}
+	\begin{enumerate}
+		\item $\mathbb{R}$: \: $\langle x,y\rangle = \sum_{i=1}^{n}x_iy_i$
+		\item $\mathbb{C}$: \: $\langle x,y\rangle = \sum_{i=1}^{n}x_i\overline{y_i}$
+		\item $\langle f,g\rangle = \int_{a}^{b}f(x)g(x)dx$. Inner product of functions
+	\end{enumerate}
+\end{myex}
+
+\subsection{Properties of a matrix}
+
+\subsubsection{Positive definite}
+A matrix is positive definite if $\langle Ax,x\rangle \geq 0$ ($\langle Ax,x\rangle = 0 \Rightarrow x=0$).\\
+A matrix that is symmetric is positive definite if all its eigenvalues are positive.\\
+
+To check if a symmetric (Hermitian in the complex case) matrix is positive definite, we can do two things:
+
+\begin{enumerate}
+	\item Check if all eigenvalues are greater than 0
+	\item Check if all main minors are greater than 0 (i.e. det($A_{ii}$) $>$ 0)
+\end{enumerate}
+
+\subsubsection{Diagonally dominant}
+I A is diagonally dominant, then A is regular, i.e. A is non-singular, i.e. det(A) $\neq$ 0.
+
+\section{Condition of a problem}
+\subsection{Condition analysis by solving linear systems}
+
+We have the system $A\overrightarrow{x} = \overrightarrow{b}$ where $A \in \mathbb{R^{n,n}}, b \in \mathbb{R^n}$ and det(A) $\neq$ 0
+
+\subsubsection{Condition number of a matrix A}
+\begin{enumerate}
+	\item $K_{abs} = \norm{A^{-1}}$
+	\item$ K_{rel} = \norm{A}\norm{A^{-1}}$
+\end{enumerate}
+
+\subsection{Preconditioning}
+Having a system $A\overrightarrow{x} = \overrightarrow{b}$, preconditioning means to multiply our system with a matrix $B \in \mathbb{R^{n,n}}$ such that K(BA)$<$K(A). We are solving $BA\overrightarrow{x} = B\overrightarrow{b}$, det(B) $\neq$ 0.\newline
+
+The easiest preconditioning is to take B = diag($d_i$)
+
+
 
 
 
